@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Mon compte - INNOVATION IN SPECTROSCOPY{% endblock %}
+
+{% block content %}
+<h1> Mon compte </h1>
+<p>Bienvenue  <strong>{{app.user.firstname}} </strong> sur votre compte  <p>
+<hr/>
+<a  href="{{ path ('account_password') }}"> Modifier mon mot de passe </a> <br>
+<a  href="{{ path ('account_address') }}"> Gérer mes adresses </a>
+{% endblock  %}

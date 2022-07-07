@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande {% endblock %}
+
+{% block content %}
+<h2 class="commande">Je passe ma commande <h2>
+<hr>
+<div class="row">
+    <div class="col-md-6 mt-5"> 
+        {% set formHtml  %}
+        {{ form_start (form, {action: path ('order_recap')})}}
+        {{form_label (form.addresses,'Choisissez votre adresse de livraison')}}
+        <p class="small"><a href="{{ path ('account_address_add')}}"> Ajouter une nouvelle adresse</a>
+        {{ form_end (form)}}
+        {% endset %}
+
+       {{ formHtml|replace({'[br]' : '<br/>'})|raw }}
+    </div>
+    <div class="col-md-6 mt-5"> 
+        <div class="text-center mb-5">
+           <b >Details de la commande </b><br>
+        <div>
+        <div  class="order">
+           {% for key,product in cart %}
+
+            <div class="row {% if key > 0 %} mt-2 {% endif %}">
+
+                <div class="col-3">
+                  <img src="/uploads/{{ product.product.illustration}}" height="75px">
+                </div>
+
+                <div class="col-7 my-auto ">
+                 {{ product.product.name }}<br/>
+                 <small>{{ product.product.subtitle }}</small>
+                </div>
+
+                <div class="col-2 my-auto ">
+                  {{ product.quantity }}
+                </div>
+
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
